@@ -1,0 +1,33 @@
+public class Stock extends Instrument {
+    private final double marketCap;
+    private final String sector;
+
+    public Stock(String symbol, String name, double currentPrice, double marketCap, String sector) {
+        super(symbol, name, currentPrice);
+        this.marketCap = marketCap;
+        this.sector = sector;
+    }
+
+    @Override
+    public double riskScore() {
+        if (marketCap < 10e9) {
+            return 7.5;
+        } else if (marketCap > 10e9 && marketCap < 10e10) {
+            return 5.0;
+        }
+        return 3.0;
+    }
+
+    @Override
+    public String assetClass() {
+        return "EQUITY";
+    }
+    
+    public double getMarketCap() {
+        return marketCap;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+}
