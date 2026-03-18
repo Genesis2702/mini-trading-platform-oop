@@ -8,7 +8,6 @@ public abstract class Derivative extends Instrument {
 
     @Override
     public String assetClass() {
-        // TODO
-        throw new UnsupportedOperationException("TODO");
+        return "DERIVATIVE";
     }
 }
