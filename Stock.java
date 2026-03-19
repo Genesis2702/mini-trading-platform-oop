@@ -10,9 +10,9 @@ public class Stock extends Instrument {
 
     @Override
     public double riskScore() {
-        if (marketCap < 10e9) {
+        if (marketCap < 1e9) {
             return 7.5;
-        } else if (marketCap > 10e9 && marketCap < 10e10) {
+        } else if (marketCap >= 1e9 && marketCap < 1e10) {
             return 5.0;
         }
         return 3.0;
