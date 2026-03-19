@@ -30,4 +30,9 @@ public class Stock extends Instrument {
     public String getSector() {
         return sector;
     }
+
+    @Override
+    public void accept(InstrumentVisitor visitor) {
+        visitor.visit(this);
+    }
 }

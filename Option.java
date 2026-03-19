@@ -33,4 +33,9 @@ public class Option extends Derivative {
     public int getExpiryDays() {
         return expiryDays;
     }
+
+    @Override
+    public void accept(InstrumentVisitor visitor) {
+        visitor.visit(this);
+    }
 }

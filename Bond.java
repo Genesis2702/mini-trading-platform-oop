@@ -32,4 +32,9 @@ public class Bond extends Instrument {
     public int getMaturityYears() {
         return maturityYears;
     }
+
+    @Override
+    public void accept(InstrumentVisitor visitor) {
+        visitor.visit(this);
+    }
 }
