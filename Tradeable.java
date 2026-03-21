@@ -6,6 +6,7 @@ public interface Tradeable {
     boolean isAvailableForTrading();
 
     default String getTradingInfo() {
-        return  "Tradeable: " + getSymbol() + " at " + getCurrentPriceValue() + " (Available)";
+        String availableForTrading = isAvailableForTrading() ? "AVAILABLE" : "UNAVAILABLE";
+        return  getSymbol() + " @ " + String.format("%.2f", getCurrentPriceValue()) + " [" + availableForTrading + "]";
     }
 }

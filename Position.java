@@ -36,7 +36,6 @@ public class Position {
 
     @Override
     public String toString() {
-        // TODO
-        throw new UnsupportedOperationException("TODO");
+        return "Position[symbol=" + getInstrument().getSymbol() + ", qty=" + quantity + ", value=" + String.format("%.2f", marketValue()) + ", pnl=" + String.format("%.2f", unrealizedPnL());
     }
 }

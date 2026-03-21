@@ -22,6 +22,6 @@ public class TaxReportVisitor implements InstrumentVisitor {
     }
 
     public String getReport() {
-        return "TODO";
+        return "Report[Total tax liability=" + totalTaxLiability + "]";
     }
 }
