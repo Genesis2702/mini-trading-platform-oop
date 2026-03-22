@@ -68,8 +68,24 @@ public class Portfolio implements Observable<String> {
     }
 
     public Map<String, Double> allocationByAssetClass() {
-        // TODO
-        throw new UnsupportedOperationException("TODO");
+        double equitySum = 0;
+        double fixedIncomeSum = 0;
+        double derivativeSum = 0;
+        for (Position position : positions) {
+            if (position.getInstrument().assetClass().equals("EQUITY")) {
+                equitySum += position.marketValue();
+            } else if (position.getInstrument().assetClass().equals("FIXED_INCOME")) {
+                fixedIncomeSum += position.marketValue();
+            } else {
+                derivativeSum += position.marketValue();
+            }
+        }
+        Map<String, Double> allocation = new HashMap<>();
+        double totalMarketSum = totalMarketValue();
+        allocation.put("EQUITY", equitySum * 100 / totalMarketSum);
+        allocation.put("FIXED_INCOME", fixedIncomeSum * 100 / totalMarketSum);
+        allocation.put("DERIVATIVE", derivativeSum * 100 / totalMarketSum);
+        return allocation;
     }
 
     public void revalueAll(PricingStrategy strategy) {
