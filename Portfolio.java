@@ -33,7 +33,7 @@ public class Portfolio implements Observable<String> {
                 return;
             }
         }
-        throw new PositionNotFoundException(symbol);
+        throw new PositionNotFoundException("Position not found: " + symbol);
     }
 
     public double totalMarketValue() {
@@ -58,7 +58,7 @@ public class Portfolio implements Observable<String> {
                 return position;
             }
         }
-        throw new PositionNotFoundException(symbol);
+        throw new PositionNotFoundException("Position not found: " + symbol);
     }
 
     public List<Position> getPositionsSortedByValue() {
@@ -71,17 +71,22 @@ public class Portfolio implements Observable<String> {
         double equitySum = 0;
         double fixedIncomeSum = 0;
         double derivativeSum = 0;
+        double totalMarketSum = 0.0;
         for (Position position : positions) {
-            if (position.getInstrument().assetClass().equals("EQUITY")) {
+            String assetClass = position.getInstrument().assetClass();
+            totalMarketSum += position.marketValue();
+            if (assetClass.equals("EQUITY")) {
                 equitySum += position.marketValue();
-            } else if (position.getInstrument().assetClass().equals("FIXED_INCOME")) {
+            } else if (assetClass.equals("FIXED_INCOME")) {
                 fixedIncomeSum += position.marketValue();
-            } else {
+            } else if (assetClass.equals("DERIVATIVE")){
                 derivativeSum += position.marketValue();
             }
         }
         Map<String, Double> allocation = new HashMap<>();
-        double totalMarketSum = totalMarketValue();
+        if (totalMarketSum == 0) {
+            return allocation;
+        }
         allocation.put("EQUITY", equitySum * 100 / totalMarketSum);
         allocation.put("FIXED_INCOME", fixedIncomeSum * 100 / totalMarketSum);
         allocation.put("DERIVATIVE", derivativeSum * 100 / totalMarketSum);

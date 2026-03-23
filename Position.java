@@ -36,6 +36,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position[symbol=" + getInstrument().getSymbol() + ", qty=" + quantity + ", value=" + String.format("%.2f", marketValue()) + ", pnl=" + String.format("%.2f", unrealizedPnL());
+        return "Position[symbol=" + getInstrument().getSymbol() + ", qty=" + quantity + ", value=" + String.format("%.2f", marketValue()) + ", pnl=" + String.format("%.2f", unrealizedPnL()) + "]";
     }
 }
