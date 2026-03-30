@@ -20,7 +20,7 @@ public abstract class Instrument implements Tradeable, Priceable {
     
     public void updatePrice(double newPrice) {
         if (newPrice < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Price cannot be negative.");
         }
         currentPrice = newPrice;
         lastUpdated = LocalDateTime.now();
