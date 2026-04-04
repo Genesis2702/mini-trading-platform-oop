@@ -54,6 +54,9 @@ public abstract class Instrument implements Tradeable, Priceable {
 
     @Override
     public double getPriceChangePercent(double previousPrice) {
+        if (previousPrice == 0.0) {
+            throw new IllegalArgumentException("Invalid previous price: division by zero");
+        }
         return (currentPrice - previousPrice) * 100 / previousPrice;
     }
 
